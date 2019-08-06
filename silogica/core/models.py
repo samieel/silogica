@@ -13,10 +13,6 @@ class PREMISSAS(models.Model):
     termo5 = models.CharField(max_length=100)
     termo6 = models.CharField(max_length=100)
     
-class SINTASSE(models.Model):
-    pid = models.IntegerField()
-    sintasse = models.CharField(max_length=288)
-
 class REDUCAO(models.Model):
     sid_silogismo = models.IntegerField()
     sid_reducao = models.IntegerField()
