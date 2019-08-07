@@ -1,8 +1,10 @@
-{{s.extensao1}} {{s.termo1}} é {{ s.termo2}}
-<br />
-{{s.extensao2}} {{s.termo3}} é {{ s.termo4}}
-<br />
-{{s.extensao3}} {{s.termo5}} é {{ s.termo5}}
+{% extends 'base.html' %} {% block content %}
+
+{{s.extensao1}} {{s.termo1}} {{s.n1}} é {{ s.termo2}}
+<br/>
+{{s.extensao2}} {{s.termo3}} {{s.n2}} é {{ s.termo4}}
+<br/>
+{{s.extensao3}} {{s.termo5}} {{s.n3}} é {{ s.termo6}}
 <br /><br />
 {{s.modo}}
 <br />
@@ -10,7 +12,7 @@ reduz para {{s.reducao}}
 
 <section class="container-fluid">
     <div class="p-2 my-2 ">
-        <h4 class="mb-3 alert alert-danger text-center">Formulario para conferir um silogismo</h4>
+        <h4 class="mb-3 alert alert-danger text-center">Formulario para conferir a redução</h4>
         <form method="POST" class="post-form"><input type="hidden">
             <div class="mb-2 lead container-fluid" role="alert">
                 Premissa um
@@ -96,3 +98,4 @@ reduz para {{s.reducao}}
         </form>
     </div>
 </section>
+{% endblock %}

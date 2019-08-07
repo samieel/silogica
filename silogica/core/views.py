@@ -15,6 +15,13 @@ def grava(x, r, s):
     s.reducao = r
     s.save()
 
+def reducao_ok(r, s):
+    r.save()
+    print(r.id)
+    red = REDUCAO()
+    red.sid_silogismo = s.id
+    red.sid_reducao = r.id
+    red.save()
 
 def index(request):
     form = get_silogismo(request.POST)
@@ -67,6 +74,9 @@ def index(request):
                             # FERIO
                             x = 'Ferio'
                             r = 'Irredutivel'
+                            s.extensao3 = 'Algum'
+                            s.n3 = 'não'
+                            
                             grava(x, r, s)
                         else:
                             return render(request, 'erro.html', {'erro': e_modos})
@@ -91,11 +101,17 @@ def index(request):
                             # FESTINO
                             x = 'Festino'
                             r = 'Ferio'
+                            s.extensao3 = 'Algum'
+                            s.n3 = 'não'
                             grava(x, r, s)
                         elif s.extensao1 == 'Todo' and s.extensao2 == 'Algum não' and s.extensao3 == 'Algum não':
                             # BAROCO
                             x = 'Baroco'
                             r = 'Irredutivel'
+                            s.extensao3 = 'Algum'
+                            s.n3 = 'não'
+                            s.extensao2 = 'Algum'
+                            s.n2 = 'não'
                             grava(x, r, s)
                         else:
                             return render(request, 'erro.html', {'erro': e_modos})
@@ -115,11 +131,15 @@ def index(request):
                             # FELAPTON
                             x = 'Felapton'
                             r = 'Ferio'
+                            s.extensao3 = 'Algum'
+                            s.n3 = 'não'
                             grava(x, r, s)
                         elif s.extensao1 == 'Nenhum' and s.extensao2 == 'Algum' and s.extensao3 == 'Algum não':
                             # FERISON
                             x = 'Ferison'
                             r = 'Ferio'
+                            s.extensao3 = 'Algum'
+                            s.n3 = 'não'
                             grava(x, r, s)
                         elif s.extensao1 == 'Algum' and s.extensao2 == 'Todo' and s.extensao3 == 'Algum':
                             # DISAMIS
@@ -130,6 +150,10 @@ def index(request):
                             # BOCARDO ajeitar
                             x = 'Bocardo'
                             r = 'Irredutivel'
+                            s.extensao1 = 'Algum'
+                            s.n1 = 'não'
+                            s.extensao3 = 'Algum'
+                            s.n3 = 'não'
                             grava(x, r, s)
                         elif s.extensao1 == 'Todo' and s.extensao2 == 'Algum' and s.extensao3 == 'Algum':
                             # DATISI
@@ -154,11 +178,15 @@ def index(request):
                             # FESAPO
                             x = 'Fesapo'
                             r = 'Ferio'
+                            s.extensao3 = 'Algum'
+                            s.n3 = 'não'
                             grava(x, r, s)
                         elif s.extensao1 == 'Nenhum' and s.extensao2 == 'Algum' and s.extensao3 == 'Algum não':
                             # FRESISON
                             x = 'Fresison'
                             r = 'Ferio'
+                            s.extensao3 = 'Algum'
+                            s.n3 = 'não'
                             grava(x, r, s)
                         elif s.extensao1 == 'Todo' and s.extensao2 == 'Nenhum' and s.extensao3 == 'Nenhum':
                             # CALEMES
@@ -188,14 +216,87 @@ def exibir_silogismo(request, key):
     return render(request, 'silogismo.html', {'s':sin})
 
 def reducao(request, key):
-    sin = PREMISSAS.objects.get(id=key)
+    s = PREMISSAS.objects.get(id=key)
 
     form = get_silogismo(request.POST)
 
     if form.is_valid():
         r = form.save(commit=False)
-        print('mitoo')
-
-        if sin.modo == 'Cesare':
-            pass
-    return render(request, 'reducao.html', {'s':sin, 'form':form})
+        if s.modo == 'Cesare':
+            if r.termo1 == s.termo2 and r.termo2 == s.termo1 and r.termo3 == s.termo3 and r.termo4 == s.termo4 and r.termo5 == s.termo5 and r.termo6 == s.termo6:
+                if r.extensao1 == 'Nenhum' and r.extensao2 == 'Todo' and r.extensao3 == 'Nenhum':
+                    reducao_ok(r, s)
+                    return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+        elif s.modo == 'Camestres':
+            if r.termo1 == s.termo3 and r.termo2 == s.termo4 and r.termo3 == s.termo1 and r.termo4 == s.termo2 and r.termo5 == s.termo6 and r.termo6 == s.termo5:
+                if r.extensao1 == 'Nenhum' and r.extensao2 == 'Todo' and r.extensao3 == 'Nenhum':   
+                    reducao_ok(r, s)
+                    return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+        elif s.modo == 'Festino':
+            if r.termo1 == s.termo2 and r.termo2 == s.termo1 and r.termo3 == s.termo3 and r.termo4 == s.termo4 and r.termo5 == s.termo5 and r.termo6 == s.termo6:
+                if r.extensao1 == 'Nenhum' and r.extensao2 == 'Algum' and r.extensao3 == 'Algum não':
+                    r.extensao3 = 'Algum'
+                    r.n3 = 'não'   
+                    reducao_ok(r, s)
+                    return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+        elif s.modo == 'Darapti':
+            if r.termo1 == s.termo1 and r.termo2 == s.termo2 and r.termo3 == s.termo4 and r.termo4 == s.termo3 and r.termo5 == s.termo5 and r.termo6 == s.termo6:
+                if r.extensao1 == 'Todo' and r.extensao2 == 'Algum' and r.extensao3 == 'Algum':   
+                    r.extensao3 = 'Algum'
+                    r.n3 = 'não'
+                    reducao_ok(r, s)
+                    return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+        elif s.modo == 'Felapton':
+            if r.termo1 == s.termo1 and r.termo2 == s.termo2 and r.termo3 == s.termo4 and r.termo4 == s.termo3 and r.termo5 == s.termo5 and r.termo6 == s.termo6:
+                if r.extensao1 == 'Nenhum' and r.extensao2 == 'Algum' and r.extensao3 == 'Algum não':   
+                    r.extensao3 = 'Algum'
+                    r.n3 = 'não'
+                    reducao_ok(r, s)
+                    return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+        elif s.modo == 'Disamis':
+            if s.termo1 == r.termo4 and s.termo2 == r.termo3 and s.termo3 == r.termo1 and s.termo4 == r.termo2 and s.termo5 == r.termo6 and s.termo6 == r.termo5:
+                if r.extensao1 == 'Todo' and r.extensao2 == 'Algum' and r.extensao3 == 'Algum':   
+                    reducao_ok(r, s)
+                    return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+        elif s.modo == 'Datisi':
+            if r.termo1 == s.termo1 and r.termo2 == s.termo2 and r.termo3 == s.termo4 and r.termo4 == s.termo3 and r.termo5 == s.termo5 and r.termo6 == s.termo6:
+                if r.extensao1 == 'Todo' and r.extensao2 == 'Algum' and r.extensao3 == 'Algum':   
+                    reducao_ok(r, s)
+                    return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+        elif s.modo == 'Ferison':
+            if r.termo1 == s.termo1 and r.termo2 == s.termo2 and r.termo3 == s.termo4 and r.termo4 == s.termo3 and r.termo5 == s.termo5 and r.termo6 == s.termo6:
+                if r.extensao1 == 'Nenhum' and r.extensao2 == 'Algum' and r.extensao3 == 'Algum não':   
+                    r.extensao3 = 'Algum'
+                    r.n3 = 'não'
+                    reducao_ok(r, s)
+                    return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+        elif s.modo == 'Bamalip':
+            if r.termo1 == s.termo3 and r.termo2 == s.termo4 and r.termo3 == s.termo1 and r.termo4 == s.termo2 and r.termo5 == s.termo6 and r.termo6 == s.termo5:
+                if r.extensao1 == 'Todo' and r.extensao2 == 'Todo' and r.extensao3 == 'Todo':   
+                    reducao_ok(r, s)
+                    return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+        elif s.modo == 'Fesapo':
+            if r.termo1 == s.termo2 and r.termo2 == s.termo1 and r.termo3 == s.termo4 and r.termo4 == s.termo3 and r.termo5 == s.termo5 and r.termo6 == s.termo6:
+                if r.extensao1 == 'Nenhum' and r.extensao2 == 'Algum' and r.extensao3 == 'Algum não':   
+                    r.extensao3 = 'Algum'
+                    r.n3 = 'não'
+                    reducao_ok(r, s)
+                    return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+        elif s.modo == 'Fresison':
+            if r.termo1 == s.termo2 and r.termo2 == s.termo1 and r.termo3 == s.termo4 and r.termo4 == s.termo3 and r.termo5 == s.termo5 and r.termo6 == s.termo6:
+                if r.extensao1 == 'Nenhum' and r.extensao2 == 'Algum' and r.extensao3 == 'Algum não':   
+                    r.extensao3 = 'Algum'
+                    r.n3 = 'não'
+                    reducao_ok(r, s)
+                    return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+        elif s.modo == 'Calemes':
+            if r.termo1 == s.termo3 and r.termo2 == s.termo4 and r.termo3 == s.termo1 and r.termo4 == s.termo2 and r.termo5 == s.termo6 and r.termo6 == s.termo5:
+                if r.extensao1 == 'Nenhum' and r.extensao2 == 'Todo' and r.extensao3 == 'Nenhum':   
+                    reducao_ok(r, s)
+                    return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+        elif s.modo == 'Dimatis':
+            if r.termo1 == s.termo3 and r.termo2 == s.termo4 and r.termo3 == s.termo1 and r.termo4 == s.termo2 and r.termo5 == s.termo6 and r.termo6 == s.termo5:
+                if r.extensao1 == 'Todo' and r.extensao2 == 'Algum' and r.extensao3 == 'Algum':   
+                    reducao_ok(r, s)
+                    return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+    return render(request, 'reducao.html', {'s':s, 'form':form})
