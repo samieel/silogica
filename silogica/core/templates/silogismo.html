@@ -1,13 +1,15 @@
 {% extends 'base.html' %} {% block content %}
-<div class="container my-3">
-<div class="card">
-    <div class="card-header bg-danger text-white text-monospace">
-        {{s.modo}}
+<div class="container-fluid my-3">
+    <div class="card">
+        <div class="card-header bg-danger text-white text-monospace">
+            {{s.modo}}
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                {{s.extensao1}} {{s.termo1}} {{s.n1}} é {{ s.termo2}}<br />
+                {{s.extensao2}} {{s.termo3}} {{s.n2}} é {{ s.termo4}}<br />
+                {{s.extensao3}} {{s.termo5}} {{s.n3}} é {{ s.termo6}}</li>
+        </ul>
     </div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">{{s.extensao1}} {{s.termo1}} {{s.n1}} é {{ s.termo2}}<br/>
-        {{s.extensao2}} {{s.termo3}} {{s.n2}} é {{ s.termo4}}<br/>
-        {{s.extensao3}} {{s.termo5}} {{s.n3}} é {{ s.termo6}}</li>
-    </ul>
 </div>
 {% endblock %}

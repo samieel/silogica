@@ -1,13 +1,28 @@
-{{s.extensao1}} {{s.termo1}} {{s.n1}} é {{ s.termo2}}
-<br/>
-{{s.extensao2}} {{s.termo3}} {{s.n2}} é {{ s.termo4}}
-<br/>
-{{s.extensao3}} {{s.termo5}} {{s.n3}} é {{ s.termo6}}
-<br/><br/>
-{{s.modo}} redusio para {{s.reducao}}
-<br/>
-{{r.extensao1}} {{r.termo1}} {{r.n1}} é {{ r.termo2}}
-<br/>
-{{r.extensao2}} {{r.termo3}} {{r.n2}} é {{ r.termo4}}
-<br/>
-{{r.extensao3}} {{r.termo5}} {{r.n3}} é {{ r.termo6}}
+{% extends 'base.html' %} {% block content %}
+<div class="container-fluid my-3">
+    <div class="card">
+        <div class="card-header bg-danger text-white text-monospace">
+            {{s.modo}}
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{s.extensao1}} {{s.termo1}} {{s.n1}} é {{ s.termo2}}<br />
+                {{s.extensao2}} {{s.termo3}} {{s.n2}} é {{ s.termo4}}<br />
+                {{s.extensao3}} {{s.termo5}} {{s.n3}} é {{ s.termo6}}</li>
+        </ul>
+    </div>
+    <div class="mt-3 alert alert-danger" role="alert">
+        Redução correta
+    </div>
+    <div class="card">
+        <div class="card-header bg-danger text-white text-monospace">
+            {{s.reducao}}
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{r.extensao1}} {{r.termo1}} {{r.n1}} é {{ r.termo2}}<br />
+                {{r.extensao2}} {{r.termo3}} {{r.n2}} é {{ r.termo4}}<br />
+                {{r.extensao3}} {{r.termo5}} {{r.n3}} é {{ r.termo6}}</li>
+        </ul>
+    </div>
+</div>
+</section>
+{% endblock %}

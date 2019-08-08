@@ -300,3 +300,9 @@ def reducao(request, key):
                     reducao_ok(r, s)
                     return render(request, 'reducao_ok.html', {'s':s, 'r':r})
     return render(request, 'reducao.html', {'s':s, 'form':form})
+
+def contato():
+    pass
+
+def sobre():
+    pass

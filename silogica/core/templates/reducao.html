@@ -1,101 +1,106 @@
 {% extends 'base.html' %} {% block content %}
-
-{{s.extensao1}} {{s.termo1}} {{s.n1}} é {{ s.termo2}}
-<br/>
-{{s.extensao2}} {{s.termo3}} {{s.n2}} é {{ s.termo4}}
-<br/>
-{{s.extensao3}} {{s.termo5}} {{s.n3}} é {{ s.termo6}}
-<br /><br />
-{{s.modo}}
-<br />
-reduz para {{s.reducao}}
-
-<section class="container-fluid">
-    <div class="p-2 my-2 ">
-        <h4 class="mb-3 alert alert-danger text-center">Formulario para conferir a redução</h4>
-        <form method="POST" class="post-form"><input type="hidden">
-            <div class="mb-2 lead container-fluid" role="alert">
-                Premissa um
-            </div>
-            <div class="row">
-                <div class="col-md-2 mb-3">
-                    <label for="id_extensao1">Extensão</label> <select class="form-control" name="extensao1"
-                        id="id_extensao1">
-                        <option value="Todo" selected>Todo</option>
-
-                        <option value="Algum">Algum</option>
-
-                        <option value="Nenhum">Nenhum</option>
-
-                        <option value="Algum não">Algum não</option>
-                    </select>
-                </div>
-                <div class="col-md-5 mb-4">
-                    <label for="id_termo1">Termo um</label>
-                    <input type="text" class="form-control" name="termo1" value="" maxlength="100" required
-                        id="id_termo1">
-                </div>
-                <div class="col-md-5 mb-4">
-                    <label for="id_termo2">Termo dois:</label>
-                    <input type="text" class="form-control" name="termo2" value="" maxlength="100" required
-                        id="id_termo2">
-                </div>
-            </div>
-            <div class="lead container-fluid" role="alert">
-                Premissa dois
-            </div>
-            <div class="row">
-                <div class="col-md-2 mb-3">
-                    <label for="id_extensao2">Extensão</label> <select class="form-control" name="extensao2"
-                        id="id_extensao2">
-                        <option value="Todo" selected>Todo</option>
-
-                        <option value="Algum">Algum</option>
-
-                        <option value="Nenhum">Nenhum</option>
-
-                        <option value="Algum não">Algum não</option>
-                    </select>
-                </div>
-                <div class="col-md-5 mb-4">
-                    <label for="id_termo3">Termo três</label>
-                    <input class="form-control" type="text" name="termo3" value="" maxlength="100" required
-                        id="id_termo3">
-                </div>
-                <div class="col-md-5 mb-4">
-                    <label for="id_termo4">Termo quatro</label>
-                    <input class="form-control" type="text" name="termo4" value="" maxlength="100" required
-                        id="id_termo4">
-                </div>
-            </div>
-            <div class="mb-2 lead container-fluid" role="alert">
-                Conclusão
-            </div>
-            <div class="row">
-                <div class="col-md-2 mb-3">
-                    <label for="id_extensao3"></label> <select class="form-control" name="extensao3" id="id_extensao3">
-                        <option value="Todo" selected>Todo</option>
-
-                        <option value="Algum">Algum</option>
-
-                        <option value="Nenhum">Nenhum</option>
-
-                        <option value="Algum não">Algum não</option>
-                    </select>
-                </div>
-                <div class="col-md-5 mb-4">
-                    <label for="id_termo5"></label>
-                    <input class="form-control" type="text" name="termo5" value="" maxlength="100" required
-                        id="id_termo5">
-                </div>
-                <div class="col-md-5 mb-4">
-                    <label for="id_termo6"></label>
-                    <input class="form-control" type="text" name="termo6" value="" maxlength="100" required
-                        id="id_termo6">
-                </div>
-            </div>
-            <button type="submit" class="save btn btn-danger col mb-4  ">Conferir silogismo</button>
-        </form>
+<div class="container-fluid my-3">
+    <div class="card">
+        <div class="card-header bg-danger text-white text-monospace">
+            {{s.modo}}
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{s.extensao1}} {{s.termo1}} {{s.n1}} é {{ s.termo2}}<br />
+                {{s.extensao2}} {{s.termo3}} {{s.n2}} é {{ s.termo4}}<br />
+                {{s.extensao3}} {{s.termo5}} {{s.n3}} é {{ s.termo6}}</li>
+                <li class="list-group-item bg-secondary text-white">reduz para {{s.reducao}}</li>
+        </ul>
     </div>
-</section>
-{% endblock %}
+    <section class="container-fluid">
+        <div class="p-2 my-2 ">
+            <h4 class="mb-3 alert alert-danger text-center">Formulario para conferir a redução</h4>
+            <form method="POST" class="post-form"><input type="hidden">
+                <div class="mb-2 lead container-fluid" role="alert">
+                    Premissa um
+                </div>
+                <div class="row">
+                    <div class="col-md-2 mb-3">
+                        <label for="id_extensao1">Extensão</label> <select class="form-control" name="extensao1"
+                            id="id_extensao1">
+                            <option value="Todo" selected>Todo</option>
+
+                            <option value="Algum">Algum</option>
+
+                            <option value="Nenhum">Nenhum</option>
+
+                            <option value="Algum não">Algum não</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5 mb-4">
+                        <label for="id_termo1">Termo um</label>
+                        <input type="text" class="form-control" name="termo1" value="" maxlength="100" required
+                            id="id_termo1">
+                    </div>
+                    <div class="col-md-5 mb-4">
+                        <label for="id_termo2">Termo dois:</label>
+                        <input type="text" class="form-control" name="termo2" value="" maxlength="100" required
+                            id="id_termo2">
+                    </div>
+                </div>
+                <div class="lead container-fluid" role="alert">
+                    Premissa dois
+                </div>
+                <div class="row">
+                    <div class="col-md-2 mb-3">
+                        <label for="id_extensao2">Extensão</label> <select class="form-control" name="extensao2"
+                            id="id_extensao2">
+                            <option value="Todo" selected>Todo</option>
+
+                            <option value="Algum">Algum</option>
+
+                            <option value="Nenhum">Nenhum</option>
+
+                            <option value="Algum não">Algum não</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5 mb-4">
+                        <label for="id_termo3">Termo três</label>
+                        <input class="form-control" type="text" name="termo3" value="" maxlength="100" required
+                            id="id_termo3">
+                    </div>
+                    <div class="col-md-5 mb-4">
+                        <label for="id_termo4">Termo quatro</label>
+                        <input class="form-control" type="text" name="termo4" value="" maxlength="100" required
+                            id="id_termo4">
+                    </div>
+                </div>
+                <div class="mb-2 lead container-fluid" role="alert">
+                    Conclusão
+                </div>
+                <div class="row">
+                    <div class="col-md-2 mb-3">
+                        <label for="id_extensao3"></label> <select class="form-control" name="extensao3"
+                            id="id_extensao3">
+                            <option value="Todo" selected>Todo</option>
+
+                            <option value="Algum">Algum</option>
+
+                            <option value="Nenhum">Nenhum</option>
+
+                            <option value="Algum não">Algum não</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5 mb-4">
+                        <label for="id_termo5"></label>
+                        <input class="form-control" type="text" name="termo5" value="" maxlength="100" required
+                            id="id_termo5">
+                    </div>
+                    <div class="col-md-5 mb-4">
+                        <label for="id_termo6"></label>
+                        <input class="form-control" type="text" name="termo6" value="" maxlength="100" required
+                            id="id_termo6">
+                    </div>
+                </div>
+                <div class="row">
+                    <button type="submit" class="save container btn btn-danger justify-content-md-center">Conferir
+                        silogismo</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    {% endblock %}
