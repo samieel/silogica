@@ -304,5 +304,5 @@ def reducao(request, key):
 def contato(request):
     return render(request, 'embreve.html')
 
-def sobre():
+def sobre(request):
     return render(request, 'embreve.html')
