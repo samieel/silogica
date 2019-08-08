@@ -10,6 +10,14 @@ e_particulares = 'Encontrado erro, de duas particulares nada se conclui'
 e_conclusao = 'Encontrado erro referente a conclusão'
 e_modos = 'Encontrado erro ao definir o modo do silogismo'
 
+def bg1(s):
+    s.termo1 = s.termo1.lower()
+    s.termo2 = s.termo2.lower()
+    s.termo3 = s.termo3.lower()
+    s.termo4 = s.termo4.lower()
+    s.termo5 = s.termo5.lower()
+    s.termo6 = s.termo6.lower()
+
 def grava(x, r, s):
     s.modo = x
     s.reducao = r
@@ -28,6 +36,7 @@ def index(request):
 
     if form.is_valid():
         s = form.save(commit=False)
+        bg1(s)
 
         #auxiliares
         negativas = ['Nenhum', 'Algum não']
@@ -222,6 +231,7 @@ def reducao(request, key):
 
     if form.is_valid():
         r = form.save(commit=False)
+        bg1(r)
         if s.modo == 'Cesare':
             if r.termo1 == s.termo2 and r.termo2 == s.termo1 and r.termo3 == s.termo3 and r.termo4 == s.termo4 and r.termo5 == s.termo5 and r.termo6 == s.termo6:
                 if r.extensao1 == 'Nenhum' and r.extensao2 == 'Todo' and r.extensao3 == 'Nenhum':
