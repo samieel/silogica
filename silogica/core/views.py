@@ -301,8 +301,8 @@ def reducao(request, key):
                     return render(request, 'reducao_ok.html', {'s':s, 'r':r})
     return render(request, 'reducao.html', {'s':s, 'form':form})
 
-def contato():
-    pass
+def contato(request):
+    return render(request, 'embreve.html')
 
 def sobre():
-    pass
+    return render(request, 'embreve.html')
