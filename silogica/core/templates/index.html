@@ -61,11 +61,6 @@
 
     {% block content %}
     {% endblock %}
-    <div class="fixed-bottom">
-        <div class="float-right"><a class=" btn btn-danger mb-1 mx-1 rounded-circle p-2" href="#nav"><img
-                    src="https://img.icons8.com/metro/32/ffffff/expand-arrow.png"></a>
-        </div>
-    </div>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -212,6 +207,41 @@
         <div class="p-2 my-2 ">
             <h4 class="mb-3 alert alert-danger text-center">Formulario para conferir um silogismo</h4>
             <form method="POST" class="post-form mb-5"><input type="hidden">
+                <div class="container-fluid">
+                    <btn id="modal-412867" href="#modal-container-412867" type="button" class="btn btn-info rounded-circle"
+                        data-toggle="modal">?</btn>
+
+                    <div class="modal fade" id="modal-container-412867" role="dialog" aria-labelledby="myModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="myModalLabel">
+                                        Modal title
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    ...
+                                </div>
+                                <div class="modal-footer">
+
+                                    <button type="button" class="btn btn-primary">
+                                        Save changes
+                                    </button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
                 <div class="mb-2 lead container-fluid" role="alert">
                     Premissa um
                 </div>
