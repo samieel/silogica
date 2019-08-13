@@ -1,4 +1,4 @@
-#!/home/samuel/Git/silogica/venv-silogica/bin/python
+#!/home/samuel/git/silogica/venv-silogica/bin/python
 
 import sys
 import getopt

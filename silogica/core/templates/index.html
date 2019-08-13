@@ -208,29 +208,30 @@
             <h4 class="mb-3 alert alert-danger text-center">Formulario para conferir um silogismo</h4>
             <form method="POST" class="post-form mb-5"><input type="hidden">
                 <div class="container-fluid">
-                    <btn id="modal-412867" href="#modal-container-412867" type="button" class="btn btn-info rounded-circle"
-                        data-toggle="modal">?</btn>
-
+                    <div class="d-flex flex-row-reverse">
+                        <button id="modal-412867" href="#modal-container-412867" type="button"
+                            class="btn btn-warning rounded-circle py-2 px-3" data-toggle="modal">?</button>
+                    </div>
                     <div class="modal fade" id="modal-container-412867" role="dialog" aria-labelledby="myModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="myModalLabel">
-                                        Modal title
+                                        Como usar o formulario
                                     </h5>
                                     <button type="button" class="close" data-dismiss="modal">
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    ...
+                                    O usuario deve se atentar a alguns detalhes:<br />
+                                    - Não destiguimos se o caracter é maiusculo ou minusculo<br />
+                                    - Não indentificamos sinonimos<br />
+                                    - Palavras no plural tem são diferentes da mesma palavra no singular<br />
+
                                 </div>
                                 <div class="modal-footer">
-
-                                    <button type="button" class="btn btn-primary">
-                                        Save changes
-                                    </button>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
                                         Close
                                     </button>
@@ -240,7 +241,6 @@
                         </div>
 
                     </div>
-
                 </div>
                 <div class="mb-2 lead container-fluid" role="alert">
                     Premissa um
