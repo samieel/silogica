@@ -19,3 +19,7 @@ class PREMISSAS(models.Model):
 class REDUCAO(models.Model):
     sid_silogismo = models.IntegerField()
     sid_reducao = models.IntegerField()
+
+class ERRO(models.Model):
+    err_sid = models.IntegerField()
+    err_erro = models.CharField(max_length=50)
