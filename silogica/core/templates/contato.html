@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="jumbotron bg-white jumbotron-fluid">
+    <div class="container">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="media">
+                        <img class="mr-3" alt="Bootstrap Media Preview"
+                            src='{% static "gmail.png" %}' />
+                        <div class="media-body">
+                            <h5 class="mt-0">
+                                Email
+                            </h5>Novidades em breve 
+                            <div class="media mt-3">
+                                <a class="pr-3" href="#"><img alt="Bootstrap Media Another Preview"
+                                        src='{% static "git.png" %}' /></a>
+                                <div class="media-body">
+                                    <h5 class="mt-0">
+                                        Github
+                                    </h5> <a href="https://github.com/samieel/silogica" >https://github.com/samieel/silogica</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

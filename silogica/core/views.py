@@ -312,7 +312,7 @@ def reducao(request, key):
     return render(request, 'reducao.html', {'s':s, 'form':form})
 
 def contato(request):
-    return render(request, 'embreve.html')
+    return render(request, 'contato.html')
 
 def sobre(request):
     return render(request, 'embreve.html')
