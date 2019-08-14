@@ -1,0 +1,176 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container-fluid my-3">
+    <div class="card">
+        <div class="card-header bg-danger text-white text-monospace">
+            {{s.modo}}
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{s.extensao1}} {{s.termo1}} {{s.n1}} é {{ s.termo2}}<br />
+                {{s.extensao2}} {{s.termo3}} {{s.n2}} é {{ s.termo4}}<br />
+                {{s.extensao3}} {{s.termo5}} {{s.n3}} é {{ s.termo6}}</li>
+            <li class="list-group-item bg-secondary text-white">reduz para {{s.reducao}} // erro na redução
+                <button id="modal-41286" href="#modal-container-41286" type="button" class="btn btn-warning"
+                    data-toggle="modal">Ver</button>
+            </li>
+        </ul>
+    </div>
+    <section class="container-fluid">
+        <div class="p-2 my-2 ">
+            <h4 class="mb-3 alert alert-danger text-center">Formulario para conferir a redução</h4>
+            <form method="POST" class="post-form"><input type="hidden">
+                <div class="d-flex flex-row-reverse">
+                    <button id="modal-412867" href="#modal-container-412867" type="button"
+                        class="btn btn-warning rounded-circle py-2 px-3" data-toggle="modal">?</button>
+                </div>
+                <div class="modal fade" id="modal-container-412867" role="dialog" aria-labelledby="myModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="myModalLabel">
+                                    Como usar o formulario
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                O usuario deve se atentar a alguns detalhes:<br />
+                                - Não destiguimos se o caracter é maiusculo ou minusculo<br />
+                                - Não indentificamos sinonimos<br />
+                                - Palavras no plural tem são diferentes da mesma palavra no singular<br />
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="mb-2 lead container-fluid" role="alert">
+                    Premissa um
+                </div>
+                <div class="row">
+                    <div class="col-md-2 mb-3">
+                        <label for="id_extensao1">Extensão</label> <select class="form-control" name="extensao1"
+                            id="id_extensao1">
+                            <option value="Todo" selected>Todo</option>
+
+                            <option value="Algum">Algum</option>
+
+                            <option value="Nenhum">Nenhum</option>
+
+                            <option value="Algum não">Algum não</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5 mb-4">
+                        <label for="id_termo1">Termo um</label>
+                        <input type="text" class="form-control" name="termo1" value="" maxlength="100" required
+                            id="id_termo1">
+                    </div>
+                    <div class="col-md-5 mb-4">
+                        <label for="id_termo2">Termo dois:</label>
+                        <input type="text" class="form-control" name="termo2" value="" maxlength="100" required
+                            id="id_termo2">
+                    </div>
+                </div>
+                <div class="lead container-fluid" role="alert">
+                    Premissa dois
+                </div>
+                <div class="row">
+                    <div class="col-md-2 mb-3">
+                        <label for="id_extensao2">Extensão</label> <select class="form-control" name="extensao2"
+                            id="id_extensao2">
+                            <option value="Todo" selected>Todo</option>
+
+                            <option value="Algum">Algum</option>
+
+                            <option value="Nenhum">Nenhum</option>
+
+                            <option value="Algum não">Algum não</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5 mb-4">
+                        <label for="id_termo3">Termo três</label>
+                        <input class="form-control" type="text" name="termo3" value="" maxlength="100" required
+                            id="id_termo3">
+                    </div>
+                    <div class="col-md-5 mb-4">
+                        <label for="id_termo4">Termo quatro</label>
+                        <input class="form-control" type="text" name="termo4" value="" maxlength="100" required
+                            id="id_termo4">
+                    </div>
+                </div>
+                <div class="mb-2 lead container-fluid" role="alert">
+                    Conclusão
+                </div>
+                <div class="row">
+                    <div class="col-md-2 mb-3">
+                        <label for="id_extensao3"></label> <select class="form-control" name="extensao3"
+                            id="id_extensao3">
+                            <option value="Todo" selected>Todo</option>
+
+                            <option value="Algum">Algum</option>
+
+                            <option value="Nenhum">Nenhum</option>
+
+                            <option value="Algum não">Algum não</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5 mb-4">
+                        <label for="id_termo5"></label>
+                        <input class="form-control" type="text" name="termo5" value="" maxlength="100" required
+                            id="id_termo5">
+                    </div>
+                    <div class="col-md-5 mb-4">
+                        <label for="id_termo6"></label>
+                        <input class="form-control" type="text" name="termo6" value="" maxlength="100" required
+                            id="id_termo6">
+                    </div>
+                </div>
+                <div class="row">
+                    <button type="submit" class="save container btn btn-danger justify-content-md-center">Conferir
+                        silogismo</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="modal fade" id="modal-container-41286" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="container-fluid my-3">
+                        <div class="card">
+                            <div class="card-header bg-danger text-white text-monospace">
+                                {{s.reducao}}
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">{{r.extensao1}} {{r.termo1}} {{r.n1}} é {{ r.termo2}}<br />
+                                    {{r.extensao2}} {{r.termo3}} {{r.n2}} é {{ r.termo4}}<br />
+                                    {{r.extensao3}} {{r.termo5}} {{r.n3}} é {{ r.termo6}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    {% endblock %}

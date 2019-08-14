@@ -31,6 +31,13 @@ def reducao_ok(r, s):
     red.sid_reducao = r.id
     red.save()
 
+def reducao_error(r, s):
+    r.save()
+    red = REDUCAO()
+    red.sid_silogismo = s.id
+    red.sid_reducao = r.id
+    red.save()
+
 def index(request):
     form = get_silogismo(request.POST)
 
@@ -237,11 +244,31 @@ def reducao(request, key):
                 if r.extensao1 == 'Nenhum' and r.extensao2 == 'Todo' and r.extensao3 == 'Nenhum':
                     reducao_ok(r, s)
                     return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+            else:
+                print('mds')
+                r.termo1 = s.termo2
+                r.termo2 = s.termo1 
+                r.termo3 = s.termo3
+                r.termo4 = s.termo4 
+                r.termo5 = s.termo5 
+                r.termo6 = s.termo6
+                reducao_error(r, s)
+                return render(request, 'reducao_error.html', {'s':s, 'form':form, 'r':r})
+        
         elif s.modo == 'Camestres':
             if r.termo1 == s.termo3 and r.termo2 == s.termo4 and r.termo3 == s.termo1 and r.termo4 == s.termo2 and r.termo5 == s.termo6 and r.termo6 == s.termo5:
                 if r.extensao1 == 'Nenhum' and r.extensao2 == 'Todo' and r.extensao3 == 'Nenhum':   
                     reducao_ok(r, s)
                     return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+            else:
+                r.termo1 = s.termo3
+                r.termo2 = s.termo4 
+                r.termo3 = s.termo1
+                r.termo4 = s.termo2 
+                r.termo5 = s.termo6 
+                r.termo6 = s.termo5
+                reducao_error(r, s)
+                return render(request, 'reducao_error.html', {'s':s, 'form':form, 'r':r})
         elif s.modo == 'Festino':
             if r.termo1 == s.termo2 and r.termo2 == s.termo1 and r.termo3 == s.termo3 and r.termo4 == s.termo4 and r.termo5 == s.termo5 and r.termo6 == s.termo6:
                 if r.extensao1 == 'Nenhum' and r.extensao2 == 'Algum' and r.extensao3 == 'Algum não':
@@ -249,6 +276,15 @@ def reducao(request, key):
                     r.n3 = 'não'   
                     reducao_ok(r, s)
                     return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+            else:
+                r.termo1 = s.termo2
+                r.termo2 = s.termo1 
+                r.termo3 = s.termo3
+                r.termo4 = s.termo4 
+                r.termo5 = s.termo5 
+                r.termo6 = s.termo6
+                reducao_error(r, s)
+                return render(request, 'reducao_error.html', {'s':s, 'form':form, 'r':r})
         elif s.modo == 'Darapti':
             if r.termo1 == s.termo1 and r.termo2 == s.termo2 and r.termo3 == s.termo4 and r.termo4 == s.termo3 and r.termo5 == s.termo5 and r.termo6 == s.termo6:
                 if r.extensao1 == 'Todo' and r.extensao2 == 'Algum' and r.extensao3 == 'Algum':   
@@ -256,6 +292,15 @@ def reducao(request, key):
                     r.n3 = 'não'
                     reducao_ok(r, s)
                     return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+            else:
+                r.termo1 = s.termo1
+                r.termo2 = s.termo2 
+                r.termo3 = s.termo4
+                r.termo4 = s.termo3 
+                r.termo5 = s.termo5 
+                r.termo6 = s.termo6
+                reducao_error(r, s)
+                return render(request, 'reducao_error.html', {'s':s, 'form':form, 'r':r})
         elif s.modo == 'Felapton':
             if r.termo1 == s.termo1 and r.termo2 == s.termo2 and r.termo3 == s.termo4 and r.termo4 == s.termo3 and r.termo5 == s.termo5 and r.termo6 == s.termo6:
                 if r.extensao1 == 'Nenhum' and r.extensao2 == 'Algum' and r.extensao3 == 'Algum não':   
@@ -263,16 +308,43 @@ def reducao(request, key):
                     r.n3 = 'não'
                     reducao_ok(r, s)
                     return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+            else:
+                r.termo1 = s.termo1
+                r.termo2 = s.termo2 
+                r.termo3 = s.termo4
+                r.termo4 = s.termo3 
+                r.termo5 = s.termo5 
+                r.termo6 = s.termo6
+                reducao_error(r, s)
+                return render(request, 'reducao_error.html', {'s':s, 'form':form, 'r':r})
         elif s.modo == 'Disamis':
             if s.termo1 == r.termo4 and s.termo2 == r.termo3 and s.termo3 == r.termo1 and s.termo4 == r.termo2 and s.termo5 == r.termo6 and s.termo6 == r.termo5:
                 if r.extensao1 == 'Todo' and r.extensao2 == 'Algum' and r.extensao3 == 'Algum':   
                     reducao_ok(r, s)
                     return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+            else:
+                r.termo1 = s.termo3
+                r.termo2 = s.termo4 
+                r.termo3 = s.termo2
+                r.termo4 = s.termo1 
+                r.termo5 = s.termo6 
+                r.termo6 = s.termo5
+                reducao_error(r, s)
+                return render(request, 'reducao_error.html', {'s':s, 'form':form, 'r':r})
         elif s.modo == 'Datisi':
             if r.termo1 == s.termo1 and r.termo2 == s.termo2 and r.termo3 == s.termo4 and r.termo4 == s.termo3 and r.termo5 == s.termo5 and r.termo6 == s.termo6:
                 if r.extensao1 == 'Todo' and r.extensao2 == 'Algum' and r.extensao3 == 'Algum':   
                     reducao_ok(r, s)
                     return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+            else:
+                r.termo1 = s.termo1
+                r.termo2 = s.termo2 
+                r.termo3 = s.termo4
+                r.termo4 = s.termo3 
+                r.termo5 = s.termo5 
+                r.termo6 = s.termo6
+                reducao_error(r, s)
+                return render(request, 'reducao_error.html', {'s':s, 'form':form, 'r':r})
         elif s.modo == 'Ferison':
             if r.termo1 == s.termo1 and r.termo2 == s.termo2 and r.termo3 == s.termo4 and r.termo4 == s.termo3 and r.termo5 == s.termo5 and r.termo6 == s.termo6:
                 if r.extensao1 == 'Nenhum' and r.extensao2 == 'Algum' and r.extensao3 == 'Algum não':   
@@ -280,11 +352,29 @@ def reducao(request, key):
                     r.n3 = 'não'
                     reducao_ok(r, s)
                     return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+            else:
+                r.termo1 = s.termo1
+                r.termo2 = s.termo2 
+                r.termo3 = s.termo4
+                r.termo4 = s.termo3 
+                r.termo5 = s.termo5 
+                r.termo6 = s.termo6
+                reducao_error(r, s)
+                return render(request, 'reducao_error.html', {'s':s, 'form':form, 'r':r})
         elif s.modo == 'Bamalip':
             if r.termo1 == s.termo3 and r.termo2 == s.termo4 and r.termo3 == s.termo1 and r.termo4 == s.termo2 and r.termo5 == s.termo6 and r.termo6 == s.termo5:
                 if r.extensao1 == 'Todo' and r.extensao2 == 'Todo' and r.extensao3 == 'Todo':   
                     reducao_ok(r, s)
                     return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+            else:
+                r.termo1 = s.termo3
+                r.termo2 = s.termo4 
+                r.termo3 = s.termo1
+                r.termo4 = s.termo2 
+                r.termo5 = s.termo6 
+                r.termo6 = s.termo5
+                reducao_error(r, s)
+                return render(request, 'reducao_error.html', {'s':s, 'form':form, 'r':r})
         elif s.modo == 'Fesapo':
             if r.termo1 == s.termo2 and r.termo2 == s.termo1 and r.termo3 == s.termo4 and r.termo4 == s.termo3 and r.termo5 == s.termo5 and r.termo6 == s.termo6:
                 if r.extensao1 == 'Nenhum' and r.extensao2 == 'Algum' and r.extensao3 == 'Algum não':   
@@ -292,6 +382,15 @@ def reducao(request, key):
                     r.n3 = 'não'
                     reducao_ok(r, s)
                     return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+            else:
+                r.termo1 = s.termo2
+                r.termo2 = s.termo1 
+                r.termo3 = s.termo4
+                r.termo4 = s.termo3 
+                r.termo5 = s.termo5 
+                r.termo6 = s.termo6
+                reducao_error(r, s)
+                return render(request, 'reducao_error.html', {'s':s, 'form':form, 'r':r})
         elif s.modo == 'Fresison':
             if r.termo1 == s.termo2 and r.termo2 == s.termo1 and r.termo3 == s.termo4 and r.termo4 == s.termo3 and r.termo5 == s.termo5 and r.termo6 == s.termo6:
                 if r.extensao1 == 'Nenhum' and r.extensao2 == 'Algum' and r.extensao3 == 'Algum não':   
@@ -299,16 +398,43 @@ def reducao(request, key):
                     r.n3 = 'não'
                     reducao_ok(r, s)
                     return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+            else:
+                r.termo1 = s.termo2
+                r.termo2 = s.termo1 
+                r.termo3 = s.termo4
+                r.termo4 = s.termo3 
+                r.termo5 = s.termo5 
+                r.termo6 = s.termo6
+                reducao_error(r, s)
+                return render(request, 'reducao_error.html', {'s':s, 'form':form, 'r':r})
         elif s.modo == 'Calemes':
             if r.termo1 == s.termo3 and r.termo2 == s.termo4 and r.termo3 == s.termo1 and r.termo4 == s.termo2 and r.termo5 == s.termo6 and r.termo6 == s.termo5:
                 if r.extensao1 == 'Nenhum' and r.extensao2 == 'Todo' and r.extensao3 == 'Nenhum':   
                     reducao_ok(r, s)
                     return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+            else:
+                r.termo1 = s.termo3
+                r.termo2 = s.termo4 
+                r.termo3 = s.termo1
+                r.termo4 = s.termo2 
+                r.termo5 = s.termo6 
+                r.termo6 = s.termo5
+                reducao_error(r, s)
+                return render(request, 'reducao_error.html', {'s':s, 'form':form, 'r':r})
         elif s.modo == 'Dimatis':
             if r.termo1 == s.termo3 and r.termo2 == s.termo4 and r.termo3 == s.termo1 and r.termo4 == s.termo2 and r.termo5 == s.termo6 and r.termo6 == s.termo5:
                 if r.extensao1 == 'Todo' and r.extensao2 == 'Algum' and r.extensao3 == 'Algum':   
                     reducao_ok(r, s)
                     return render(request, 'reducao_ok.html', {'s':s, 'r':r})
+            else:
+                r.termo1 = s.termo3
+                r.termo2 = s.termo4 
+                r.termo3 = s.termo1
+                r.termo4 = s.termo2 
+                r.termo5 = s.termo6
+                r.termo6 = s.termo5
+                reducao_error(r, s)
+                return render(request, 'reducao_error.html', {'s':s, 'form':form, 'r':r})
     return render(request, 'reducao.html', {'s':s, 'form':form})
 
 def contato(request):
