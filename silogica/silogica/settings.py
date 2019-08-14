@@ -25,7 +25,7 @@ SECRET_KEY = 'y8r466l5(wy^f40-e5f*07b@)o%6tb6=bh8=244vw%&)z@rh#9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['silogica.pythonanywhere.com']
 
 
 # Application definition
