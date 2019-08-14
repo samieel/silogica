@@ -28,7 +28,7 @@ def _deactivate(args):
 _deactivate(["nondestructive"])
 aliases["deactivate"] = _deactivate
 
-$VIRTUAL_ENV = r"/home/samuel/git/silogica/venv-silogica"
+$VIRTUAL_ENV = r"/home/samuel/Git/silogica/venv-silogica"
 
 $_OLD_VIRTUAL_PATH = $PATH
 $PATH = $PATH[:]

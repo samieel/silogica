@@ -1,4 +1,4 @@
-#!/home/samuel/git/silogica/venv-silogica/bin/python3
+#!/home/samuel/Git/silogica/venv-silogica/bin/python3
 from django.core import management
 
 if __name__ == "__main__":

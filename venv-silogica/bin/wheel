@@ -1,4 +1,4 @@
-#!/home/samuel/git/silogica/venv-silogica/bin/python3
+#!/home/samuel/Git/silogica/venv-silogica/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
