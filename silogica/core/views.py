@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import get_silogismo
-from .models import PREMISSAS, REDUCAO
+from .models import PREMISSAS, REDUCAO, ERRO
 from . import models
 
 #erros
@@ -17,6 +17,13 @@ def bg1(s):
     s.termo4 = s.termo4.lower()
     s.termo5 = s.termo5.lower()
     s.termo6 = s.termo6.lower()
+
+def s_erro(s, e):
+    s.save()
+    er= ERRO()
+    er.err_sid = s.id
+    er.err_erro = e
+    er.save()
 
 def grava(x, r, s):
     s.modo = x
@@ -53,22 +60,27 @@ def index(request):
 
         #erro termos = na mesma premissa
         if s.termo1 == s.termo2 or s.termo3 == s.termo4:
+            s_erro(s, e_termos)
             return render(request, 'erro.html', {'erro': e_termos})
 
         #erro não tem 3 termos nas 2 premissas
         if c_termos.count(s.termo1) + c_termos.count(s.termo2) != 3:
+            s_erro(s, e_termos)
             return render(request, 'erro.html', {'erro': e_termos})
         else:
             #erro duas negativas
             if negativas.count(s.extensao1) + negativas.count(s.extensao2) > 1:
+                s_erro(s, e_negativas)
                 return render(request, 'erro.html', {'erro': e_negativas})
             #erro duas particulares
             elif particulares.count(s.extensao1) + particulares.count(s.extensao2) > 1:
+                s_erro(s, e_particulares)
                 return render(request, 'erro.html', {'erro': e_particulares})
             else:
                 # 1° figura
                 if s.termo1 == s.termo4:
                     if s.termo2 != s.termo6 or s.termo3 != s.termo5:
+                        s_erro(s, e_conclusao)
                         return render(request, 'erro.html', {'erro': e_conclusao})
                     else:
                         if s.extensao1 == 'Todo' and s.extensao2 == 'Todo' and s.extensao3 == 'Todo':
@@ -95,12 +107,14 @@ def index(request):
                             
                             grava(x, r, s)
                         else:
+                            s_erro(s, e_modos)
                             return render(request, 'erro.html', {'erro': e_modos})
 
 
                 elif s.termo2 == s.termo4:
                     # 2° figura
                     if s.termo1 != s.termo6 or s.termo3 != s.termo5:
+                        s_erro(s, e_conclusao)
                         return render(request, 'erro.html', {'erro': e_conclusao})
                     else:
                         if s.extensao1 == 'Nenhum' and s.extensao2 == 'Todo' and s.extensao3 == 'Nenhum':
@@ -130,12 +144,14 @@ def index(request):
                             s.n2 = 'não'
                             grava(x, r, s)
                         else:
+                            s_erro(s, e_modos)
                             return render(request, 'erro.html', {'erro': e_modos})
 
 
                 elif s.termo1 == s.termo3:
                     # 3° figura
                     if s.termo2 != s.termo6 or s.termo4 != s.termo5:
+                        s_erro(s, e_conclusao)
                         return render(request, 'erro.html', {'erro': e_conclusao})
                     else:
                         if s.extensao1 == 'Todo' and s.extensao2 == 'Todo' and s.extensao3 == 'Algum':
@@ -177,6 +193,7 @@ def index(request):
                             r = 'Darii'
                             grava(x, r, s)
                         else:
+                            s_erro(s, e_modos)
                             return render(request, 'erro.html', {'erro': e_modos})
 
 
@@ -215,8 +232,10 @@ def index(request):
                             r = 'Darii'
                             grava(x, r, s)
                         else:
+                            s_erro(s, e_modos)
                             return render(request, 'erro.html', {'erro': e_modos})
                 else:
+                    s_erro(s, e_modos)
                     return render(request, 'erro.html', {'erro': e_modos})
 
         key = s.id
@@ -442,3 +461,7 @@ def contato(request):
 
 def avalia(request):
     return render(request, 'avalia.html')
+
+def erros(request):
+    ers = ERRO.objects.all()
+    return render(request, 'c_erros.html', {'e':ers})

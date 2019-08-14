@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+    <card class="mt-2 card card-danger">
+        <div class="card-header bg-danger text-white text-monospace">
+            erros
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                {% for i in e %}
+                {{i}}
+                <p>Erro no silogismo: {{i.err_sid}}
+                    <br />Erro encontrado: {{i.err_erro}}</p>
+
+                {% endfor %}
+        </ul>
+    </card>
+</div>
+{% endblock %}
