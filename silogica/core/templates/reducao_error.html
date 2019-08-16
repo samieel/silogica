@@ -1,4 +1,32 @@
 {% extends 'base.html' %} {% block content %}
+
+<div id="exemplomodal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Erro na reducao</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" id="modal-41286" href="#modal-container-41286" type="button" class="btn btn-warning"
+                    data-toggle="modal">Ver redução correta para {{s.reducao}}</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<!-- bootstrap -->
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<!-- chamada da função -->
+<script type="text/javascript">
+    $(window).load(function () {
+        $('#exemplomodal').modal('show');
+    });
+</script>
+
 <div class="container-fluid my-3">
     <div class="card">
         <div class="card-header bg-danger text-white text-monospace">
@@ -8,9 +36,7 @@
             <li class="list-group-item">{{s.extensao1}} {{s.termo1}} {{s.n1}} é {{ s.termo2}}<br />
                 {{s.extensao2}} {{s.termo3}} {{s.n2}} é {{ s.termo4}}<br />
                 {{s.extensao3}} {{s.termo5}} {{s.n3}} é {{ s.termo6}}</li>
-            <li class="list-group-item bg-secondary text-white">reduz para {{s.reducao}} // erro na redução
-                <button id="modal-41286" href="#modal-container-41286" type="button" class="btn btn-warning"
-                    data-toggle="modal">Ver</button>
+            <li class="list-group-item bg-secondary text-white">reduz para {{s.reducao}}
             </li>
         </ul>
     </div>

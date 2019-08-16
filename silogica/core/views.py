@@ -63,15 +63,15 @@ def index(request):
 
         #erro termos = na mesma premissa
         if s.termo1 == s.termo2:
-            s_erro(s, e_termos)
+            s_erro(s, e_termos1)
             return render(request, 'erro.html', {'erro': e_termos1})
         elif s.termo3 == s.termo4:
-            s_erro(s, e_termos)
+            s_erro(s, e_termos2)
             return render(request, 'erro.html', {'erro': e_termos2})
 
         #erro não tem 3 termos nas 2 premissas
         if c_termos.count(s.termo1) + c_termos.count(s.termo2) != 3:
-            s_erro(s, e_termos)
+            s_erro(s, e_termos3)
             return render(request, 'erro.html', {'erro': e_termos3})
         else:
             #erro duas negativas
@@ -250,7 +250,7 @@ def index(request):
                             return render(request, 'erro.html', {'erro': e_modos})
                 #erro sem termo medio
                 else:
-                    s_erro(s, e_modos)
+                    s_erro(s, e_medio)
                     return render(request, 'erro.html', {'erro': e_medio})
 
         key = s.id
