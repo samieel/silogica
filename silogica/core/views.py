@@ -4,10 +4,13 @@ from .models import PREMISSAS, REDUCAO, ERRO
 from . import models
 
 #erros
-e_termos = 'Encontrado erro referente aos termos'
+e_termos1 = 'Encontrado erro referente aos termos, termo 1 igual ao termo 2'
+e_termos2 = 'Encontrado erro referente aos termos, termo 3 igual ao termo 4'
+e_termos3 = 'Encontrado erro referente aos termos, numero de termos diferente de 3'
 e_negativas = 'Encontrado erro, de duas negativas nada se conclui'
 e_particulares = 'Encontrado erro, de duas particulares nada se conclui'
 e_conclusao = 'Encontrado erro referente a conclusão'
+e_medio = 'Encontrado erro referente ao termo medio, termo medio não indentificado'
 e_modos = 'Encontrado erro ao definir o modo do silogismo'
 
 def bg1(s):
@@ -59,14 +62,17 @@ def index(request):
         conclu = [s.termo5, s.termo6]
 
         #erro termos = na mesma premissa
-        if s.termo1 == s.termo2 or s.termo3 == s.termo4:
+        if s.termo1 == s.termo2:
             s_erro(s, e_termos)
-            return render(request, 'erro.html', {'erro': e_termos})
+            return render(request, 'erro.html', {'erro': e_termos1})
+        elif s.termo3 == s.termo4:
+            s_erro(s, e_termos)
+            return render(request, 'erro.html', {'erro': e_termos2})
 
         #erro não tem 3 termos nas 2 premissas
         if c_termos.count(s.termo1) + c_termos.count(s.termo2) != 3:
             s_erro(s, e_termos)
-            return render(request, 'erro.html', {'erro': e_termos})
+            return render(request, 'erro.html', {'erro': e_termos3})
         else:
             #erro duas negativas
             if negativas.count(s.extensao1) + negativas.count(s.extensao2) > 1:
@@ -79,6 +85,7 @@ def index(request):
             else:
                 # 1° figura
                 if s.termo1 == s.termo4:
+                    #erro conclusão
                     if s.termo2 != s.termo6 or s.termo3 != s.termo5:
                         s_erro(s, e_conclusao)
                         return render(request, 'erro.html', {'erro': e_conclusao})
@@ -106,6 +113,7 @@ def index(request):
                             s.n3 = 'não'
                             
                             grava(x, r, s)
+                        #erro modo 1fig
                         else:
                             s_erro(s, e_modos)
                             return render(request, 'erro.html', {'erro': e_modos})
@@ -113,6 +121,7 @@ def index(request):
 
                 elif s.termo2 == s.termo4:
                     # 2° figura
+                    #erro conclusão
                     if s.termo1 != s.termo6 or s.termo3 != s.termo5:
                         s_erro(s, e_conclusao)
                         return render(request, 'erro.html', {'erro': e_conclusao})
@@ -143,6 +152,7 @@ def index(request):
                             s.extensao2 = 'Algum'
                             s.n2 = 'não'
                             grava(x, r, s)
+                        #erro modo 2fig
                         else:
                             s_erro(s, e_modos)
                             return render(request, 'erro.html', {'erro': e_modos})
@@ -150,6 +160,7 @@ def index(request):
 
                 elif s.termo1 == s.termo3:
                     # 3° figura
+                    #erro conclusão
                     if s.termo2 != s.termo6 or s.termo4 != s.termo5:
                         s_erro(s, e_conclusao)
                         return render(request, 'erro.html', {'erro': e_conclusao})
@@ -192,6 +203,7 @@ def index(request):
                             x = 'Datisi'
                             r = 'Darii'
                             grava(x, r, s)
+                        #erro modo 3fig
                         else:
                             s_erro(s, e_modos)
                             return render(request, 'erro.html', {'erro': e_modos})
@@ -199,6 +211,7 @@ def index(request):
 
                 elif s.termo2 == s.termo3:
                     # 4° figura
+                    #erro conclusão
                     if s.termo1 != s.termo6 or s.termo4 != s.termo5:
                         return render(request, 'errp.html', {'erro': e_conclusao})
                     else:
@@ -232,11 +245,13 @@ def index(request):
                             r = 'Darii'
                             grava(x, r, s)
                         else:
+                            #erro modo 4fig
                             s_erro(s, e_modos)
                             return render(request, 'erro.html', {'erro': e_modos})
+                #erro sem termo medio
                 else:
                     s_erro(s, e_modos)
-                    return render(request, 'erro.html', {'erro': e_modos})
+                    return render(request, 'erro.html', {'erro': e_medio})
 
         key = s.id
         if r == 'Irredutivel':
