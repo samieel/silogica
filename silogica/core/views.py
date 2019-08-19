@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import get_silogismo, get_c_classe, get_e_classe
+from .forms import get_silogismo, get_c_classe, get_e_classe, get_e_erro
 from .models import PREMISSAS, REDUCAO, ERRO, CLASSE
 from . import models
 
@@ -55,11 +55,13 @@ def classe(request):
 
     if e_classe.is_valid():
         cc = e_classe.save(commit=False)
-        
-        
-        classe = cc.e_codigo
-        return redirect('/s/%s' % classe)
-
+        try:
+            e = CLASSE.objects.get(cla_codigo=cc.e_codigo)
+            classe = cc.e_codigo
+            return redirect('/s/%s' % classe)
+        except:
+            erro = 'classe não existe'
+            return render(request, 'ec_class.html', {'e_cla':e_classe, 'c_cla':c_classe, 'erro':erro})
 
     if c_classe.is_valid():
         cc = c_classe.save(commit=False)
@@ -73,6 +75,25 @@ def classe(request):
 def nclasse(request, classe):
     cod = classe
     return render(request, 'new_class.html', {'cod':cod})
+
+def e_erro(request):
+    e_erro = get_e_erro(request.POST)
+    if e_erro.is_valid():
+        cc = e_erro.save(commit=False)
+        try:
+            e = CLASSE.objects.get(cla_codigo=cc.e_codigo)
+            if cc.e_prof == e.cla_prof:
+                classe = cc.e_codigo
+                return redirect('/erros/%s' % classe)
+            else:
+                erro = 'a classe informada não esta relacionada ao professor'
+                return render(request, 'e_erro.html', {'e_erro':e_erro, 'erro':erro})               
+        except:
+            erro = 'classe não existe'
+            return render(request, 'e_erro.html', {'e_erro':e_erro, 'erro':erro})
+
+
+    return render(request, 'e_erro.html')
 
 def index(request, classe):
     form = get_silogismo(request.POST)

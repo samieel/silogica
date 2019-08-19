@@ -19,3 +19,9 @@ class get_e_classe(forms.ModelForm):
     class Meta:
         model = E_CLASSE
         fields = ('e_codigo',)
+
+class get_e_erro(forms.ModelForm):
+
+    class Meta:
+        model = E_CLASSE
+        fields = ('e_codigo','e_prof',)

@@ -33,3 +33,4 @@ class CLASSE(models.Model):
 
 class E_CLASSE(models.Model):
     e_codigo = models.CharField(max_length=64)
+    e_prof = models.CharField(max_length=100, null=True)

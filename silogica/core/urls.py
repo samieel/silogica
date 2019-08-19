@@ -9,5 +9,6 @@ urlpatterns = [
     path('reducao/<int:key>/', views.reducao, name='reducao'),
     path('contato', views.contato, name='contato'),
     path('avalia', views.avalia, name='avalia'),
+    path('e_erros', views.e_erro, name='e_erro'),
     path('erros/<str:classe>/', views.erros, name='erros'),
 ]

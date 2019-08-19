@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container-fluid col-7 mt-5">
+    <div class=" justify-content-center ">
+        <div class="card">
+            <div class="alert alert-danger text-center">
+                <h3>Entre na sua sala</h3>
+                <span class="text-danger">{{erro}}</span>
+            </div>
+            <div class="card-body">
+                <form method="POST" class="post-form">
+                    <div class="input-group form-group justify-content-center row">
+                        <input class="col-12 ml-4" placeholder="Codigo da sala" type="text" name="e_codigo"
+                            maxlength="64" required id="id_e_codigo">
+                        <input class="col-12 ml-4 my-3" placeholder="Nome do professor" type="text" name="e_prof"
+                            maxlength="100" required id="id_e_prof">
+                        <button type="submit" class="save btn btn-danger ml-2">Entrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
