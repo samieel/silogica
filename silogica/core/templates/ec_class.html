@@ -1,0 +1,39 @@
+{% extends 'bbase.html' %} {% block content %}
+<div class="container-fluid col-7 mt-5">
+    <div class=" justify-content-center ">
+        <div class="card">
+            <div class="alert alert-danger text-center">
+                <h3>Entre na sua sala</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" class="post-form">
+                    <div class="input-group form-group justify-content-center row">
+                        <input class="col-9 ml-4" placeholder="Codigo da sala" type="text" name="e_codigo"
+                            maxlength="64" required id="id_e_codigo">
+                        <button type="submit" class="save btn btn-danger ml-2">Entrar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="alert alert-danger text-center">
+                <h3>Cadastre uma nova sala</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" class="post-form">
+                    <div class="input-group form-group justify-content-center row">
+                        <input class="col-9 ml-4" placeholder="Seu nome" type="text" name="cla_prof" maxlength="100"
+                            required id="id_cla_prof">
+                        <button type="submit" class="save btn btn-danger ml-2">Criar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer" style="border: none">
+                <div class="d-flex justify-content-center links">
+                    <div class="form-group">
+                        <a class="btn btn-danger mt-2" href="s/test">Apenas testar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

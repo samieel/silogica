@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .forms import get_silogismo
-from .models import PREMISSAS, REDUCAO, ERRO
+from .forms import get_silogismo, get_c_classe, get_e_classe
+from .models import PREMISSAS, REDUCAO, ERRO, CLASSE
 from . import models
 
 #erros
@@ -24,6 +24,7 @@ def bg1(s):
 def s_erro(s, e):
     s.save()
     er= ERRO()
+    er.err_classe = s.classe
     er.err_sid = s.id
     er.err_erro = e
     er.save()
@@ -48,11 +49,36 @@ def reducao_error(r, s):
     red.sid_reducao = r.id
     red.save()
 
-def index(request):
-    form = get_silogismo(request.POST)
+def classe(request):
+    e_classe = get_e_classe(request.POST)
+    c_classe = get_c_classe(request.POST)
 
+    if e_classe.is_valid():
+        cc = e_classe.save(commit=False)
+        
+        
+        classe = cc.e_codigo
+        return redirect('/s/%s' % classe)
+
+
+    if c_classe.is_valid():
+        cc = c_classe.save(commit=False)
+        
+        cc.save()
+        classe = cc.cla_codigo
+        return redirect('/new/%s' % classe)
+    
+    return render(request, 'ec_class.html', {'e_cla':e_classe, 'c_cla':c_classe})
+
+def nclasse(request, classe):
+    cod = classe
+    return render(request, 'new_class.html', {'cod':cod})
+
+def index(request, classe):
+    form = get_silogismo(request.POST)
     if form.is_valid():
         s = form.save(commit=False)
+        s.classe = classe
         bg1(s)
 
         #auxiliares
@@ -213,7 +239,7 @@ def index(request):
                     # 4° figura
                     #erro conclusão
                     if s.termo1 != s.termo6 or s.termo4 != s.termo5:
-                        return render(request, 'errp.html', {'erro': e_conclusao})
+                        return render(request, 'erro.html', {'erro': e_conclusao})
                     else:
                         if s.extensao1 == 'Todo' and s.extensao2 == 'Todo' and s.extensao3 == 'Algum':
                             # BAMALIP
@@ -255,9 +281,9 @@ def index(request):
 
         key = s.id
         if r == 'Irredutivel':
-            return redirect('silogismo/%s' % key)
+            return redirect('/silogismo/%s' % key)
         else:
-            return redirect('reducao/%s' % key)
+            return redirect('/reducao/%s' % key)
     return render(request, 'index.html', {'form': form})
 
 
@@ -272,6 +298,7 @@ def reducao(request, key):
 
     if form.is_valid():
         r = form.save(commit=False)
+        r.classe = s.classe
         bg1(r)
         if s.modo == 'Cesare':
             if r.termo1 == s.termo2 and r.termo2 == s.termo1 and r.termo3 == s.termo3 and r.termo4 == s.termo4 and r.termo5 == s.termo5 and r.termo6 == s.termo6:
@@ -477,6 +504,6 @@ def contato(request):
 def avalia(request):
     return render(request, 'avalia.html')
 
-def erros(request):
-    ers = ERRO.objects.all()
+def erros(request, classe):
+    ers = ERRO.objects.filter(err_classe=classe)
     return render(request, 'c_erros.html', {'e':ers})

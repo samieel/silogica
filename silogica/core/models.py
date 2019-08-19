@@ -1,6 +1,8 @@
 from django.db import models
+import uuid
 
 class PREMISSAS(models.Model):
+    classe = models.CharField(max_length=64, null=True)
     modo = models.CharField(max_length=40)
     reducao = models.CharField(max_length=40)
     extensao1 = models.CharField(max_length=20)
@@ -21,5 +23,13 @@ class REDUCAO(models.Model):
     sid_reducao = models.IntegerField()
 
 class ERRO(models.Model):
+    err_classe = models.CharField(max_length=64, null=True)
     err_sid = models.IntegerField()
     err_erro = models.CharField(max_length=50)
+
+class CLASSE(models.Model):
+    cla_codigo = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    cla_prof = models.CharField(max_length=100)
+
+class E_CLASSE(models.Model):
+    e_codigo = models.CharField(max_length=64)

@@ -1,0 +1,15 @@
+{% extends 'bbase.html' %} {% block content %}
+<div class="container-fluid col-7 mt-5">
+    <div class=" justify-content-center ">
+        <div class="card">
+            <div class="alert alert-danger text-center">
+                <h3>este é o codigo da sua sala<h3>
+                        <p>{{cod}}</p>
+                        <div class="form-group">
+                            <a class="btn btn-danger mt-2" href="/s/{{cod}}">Ir para</a>
+                        </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
